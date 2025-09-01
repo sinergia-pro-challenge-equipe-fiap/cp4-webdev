@@ -2,9 +2,7 @@ import React from 'react'
 
 const Calculadora = () => {
   return (
-    <div>
-      
-    </div>
+    <div>Calculadora</div>
   )
 }
 
