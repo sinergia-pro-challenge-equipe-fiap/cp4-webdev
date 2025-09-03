@@ -6,6 +6,7 @@ const Home = () => {
     <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left mb-8 mr-16">
       <p className="text-lg text-gray-400">Qualquer operação</p>
       <h4 className="text-4xl md:text-6xl font-bold sm:text-5xl">Calculadora<br/> Aritmética</h4>
+      <p className="text-lg text-gray-400 mt-4">Simples, rápida e eficiente</p>
       <button className="mt-8 px-6 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-800  transition-colors duration-300">
         Começar
       </button>
