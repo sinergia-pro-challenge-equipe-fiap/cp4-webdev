@@ -1,77 +1,84 @@
 import { useState } from "react";
 
 function Calculadora() {
-  const [num1, setNum1] = useState("");
-  const [num2, setNum2] = useState("");
-  const [operacao, setOperacao] = useState("");
-  const [resultado, setResultado] = useState(null);
+  const [display, setDisplay] = useState("");
 
-  function calcular() {
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
-
-    if (operacao === "soma") {
-      setResultado(n1 + n2);
-    } else if (operacao === "subtracao") {
-      setResultado(n1 - n2);
-    } else if (operacao === "multiplicacao") {
-      setResultado(n1 * n2);
-    } else if (operacao === "divisao") {
-      if (n2 === 0) {
-        setResultado("Erro: divisão por zero!");
-      } else {
-        setResultado(n1 / n2);
+  const handleClick = (value) => {
+    if (value === "=") {
+      try {
+        setDisplay(eval(display).toString()); // Calcula a expressão
+      } catch {
+        setDisplay("Erro");
       }
+    } else if (value === "C") {
+      setDisplay(""); // Limpa a tela
     } else {
-      setResultado("Escolha uma operação válida!");
+      setDisplay(display + value); // Adiciona o valor no display
     }
-  }
+  };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-300 to-gray-900">
-      <div className="bg-white shadow-2xl rounded-2xl p-8 w-96 text-center">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Calculadora</h2>
+    <div className="flex items-center justify-center min-h-screen  bg-gray-900">
+      <div className="bg-white rounded-3xl shadow-lg p-8 w-80">
+        {/* Display */}
+        <div className="w-full h-16 bg-blue-200 rounded-lg mb-4 flex items-center justify-end px-6 text-3xl font-bold text-blue-800">
+          {display || "0"}
+        </div>
 
-        <input
-          type="number"
-          placeholder="Número 1"
-          value={num1}
-          onChange={(e) => setNum1(e.target.value)}
-          className="w-full p-3 mb-4 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-        />
+        {/* Buttons */}
+        <div className="grid grid-cols-4 gap-4">
+          {/* Linha 1 */}
+          {[7, 8, 9, "/"].map((btn) => (
+            <button
+              key={btn}
+              onClick={() => handleClick(btn)}
+              className="bg-blue-300 p-5 rounded-xl text-2xl font-semibold text-blue-800 hover:bg-blue-400 transition duration-300 transform hover:scale-105"
+            >
+              {btn}
+            </button>
+          ))}
 
-        <input
-          type="number"
-          placeholder="Número 2"
-          value={num2}
-          onChange={(e) => setNum2(e.target.value)}
-          className="w-full p-3 mb-4 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-        />
+          {/* Linha 2 */}
+          {[4, 5, 6, "*"].map((btn) => (
+            <button
+              key={btn}
+              onClick={() => handleClick(btn)}
+              className="bg-blue-300 p-5 rounded-xl text-2xl font-semibold text-blue-800 hover:bg-blue-400 transition duration-300 transform hover:scale-105"
+            >
+              {btn}
+            </button>
+          ))}
 
-        <select
-          onChange={(e) => setOperacao(e.target.value)}
-          className="w-full p-3 mb-4 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-purple-400 outline-none"
-        >
-          <option value="">Selecione a operação</option>
-          <option value="soma">Soma</option>
-          <option value="subtracao">Subtração</option>
-          <option value="multiplicacao">Multiplicação</option>
-          <option value="divisao">Divisão</option>
-        </select>
+          {/* Linha 3 */}
+          {[1, 2, 3, "-"].map((btn) => (
+            <button
+              key={btn}
+              onClick={() => handleClick(btn)}
+              className="bg-blue-300 p-5 rounded-xl text-2xl font-semibold text-blue-800 hover:bg-blue-400 transition duration-300 transform hover:scale-105"
+            >
+              {btn}
+            </button>
+          ))}
 
-        <button
-          onClick={calcular}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition duration-300"
-        >
-          Calcular
-        </button>
+          {/* Linha 4 */}
+          {[0, ".", "=", "+"].map((btn) => (
+            <button
+              key={btn}
+              onClick={() => handleClick(btn)}
+              className="bg-blue-300 p-5 rounded-xl text-2xl font-semibold text-blue-800 hover:bg-blue-400 transition duration-300 transform hover:scale-105"
+            >
+              {btn}
+            </button>
+          ))}
 
-        {resultado !== null && (
-          <h3 className="mt-6 text-xl font-semibold text-gray-700">
-            Resultado:{" "}
-            <span className="text-purple-600 font-bold">{resultado}</span>
-          </h3>
-        )}
+          {/* Clear Button */}
+          <button
+            onClick={() => handleClick("C")}
+            className="col-span-2 bg-blue-600 p-5 rounded-xl text-2xl font-semibold text-white hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+          >
+            C
+          </button>
+        </div>
       </div>
     </div>
   );
