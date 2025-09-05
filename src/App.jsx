@@ -15,7 +15,7 @@ function App() {
         {/* Rota para as urls não encontradas */}
         <Route path="*" element={<Error/>}/>
 
-        {/* Rota para chamar a página home */}
+        {/* Rota ajustadas para chamar página home */}
         <Route path="/" element={<Home/>}/>
 
          {/* Rota para chamar a página Calculadora */}
