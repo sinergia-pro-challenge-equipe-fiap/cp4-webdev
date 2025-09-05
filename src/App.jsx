@@ -12,7 +12,7 @@ function App() {
     <Nav/>
     <main>
       <Routes>
-        {/* Rota para lidar com as urls não encontradas */}
+        {/* Rota para as urls não encontradas */}
         <Route path="*" element={<Error/>}/>
 
         {/* Rota para chamar a página home */}
