@@ -13,13 +13,20 @@ function Calculadora() {
     } else if (value === "C") {
       setDisplay(""); // Limpa a tela
     } else {
-      setDisplay(display + value); //Adiciona o valor no display
+      // Substitui símbolos visuais (× e ÷) por operadores reais (* e /)
+      const realValue = value === "×" ? "*" : value === "÷" ? "/" : value;
+      setDisplay(display + realValue);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen  bg-gray-900">
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
       <div className="bg-white rounded-3xl shadow-lg p-8 w-80">
+        {/* Título */}
+        <h1 className="text-center text-3xl font-bold text-blue-800 mb-4">
+          Calculadora
+        </h1>
+
         {/* Display */}
         <div className="w-full h-16 bg-blue-200 rounded-lg mb-4 flex items-center justify-end px-6 text-3xl font-bold text-blue-800">
           {display || "0"}
@@ -28,7 +35,7 @@ function Calculadora() {
         {/* Buttons */}
         <div className="grid grid-cols-4 gap-4">
           {/* Linha 1 */}
-          {[7, 8, 9, "/"].map((btn) => (
+          {[7, 8, 9, "÷"].map((btn) => (
             <button
               key={btn}
               onClick={() => handleClick(btn)}
@@ -39,7 +46,7 @@ function Calculadora() {
           ))}
 
           {/* Linha 2 */}
-          {[4, 5, 6, "*"].map((btn) => (
+          {[4, 5, 6, "×"].map((btn) => (
             <button
               key={btn}
               onClick={() => handleClick(btn)}
