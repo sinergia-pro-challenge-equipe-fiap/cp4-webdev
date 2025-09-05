@@ -13,7 +13,7 @@ function Calculadora() {
     } else if (value === "C") {
       setDisplay(""); // Limpa a tela
     } else {
-      setDisplay(display + value); // Adiciona o valor no display
+      setDisplay(display + value); //Adiciona o valor no display
     }
   };
 
